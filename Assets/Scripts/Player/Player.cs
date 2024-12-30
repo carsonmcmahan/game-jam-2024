@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -8,6 +9,7 @@ public class Player : MonoBehaviour
     public int health;
     [SerializeField] private int maxHealth;
     [SerializeField] private Slider healthUI;
+    [SerializeField] private TMP_Text speedBoostCountUI;
 
 
     public bool deliverableItemHeld;
@@ -18,12 +20,25 @@ public class Player : MonoBehaviour
         if (other.CompareTag("EnemyBullet"))
         {
             health--;
+            UpdateHPUI();
         }
     }
 
     public void ResetHP()
     {
         health = maxHealth;
+        UpdateHPUI();
+    }
+
+    private void UpdateHPUI()
+    {
+        healthUI.value = health;
+        healthUI.maxValue = maxHealth;
+    }
+
+    public void UpdateSpeedBoostUI(int count)
+    {
+        speedBoostCountUI.text = count.ToString();
     }
 
     public void DeliveryItemVisibility()
