@@ -168,7 +168,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 50
+    FieldOfView: 80
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -194,7 +194,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 71318143}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.08709445, y: 0.082164966, z: 0.0072081587, w: 0.99277973}
+  m_LocalRotation: {x: -0.123402335, y: 0.08184576, z: 0.010213087, w: 0.9889231}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -247,7 +247,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 50
+    FieldOfView: 80
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -273,7 +273,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 168708785}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.10422137, y: 0.082028255, z: 0.008625623, w: 0.9911281}
+  m_LocalRotation: {x: -0.12259615, y: 0.08185408, z: 0.010146367, w: 0.9890234}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -343,7 +343,7 @@ Camera:
     height: 1
   near clip plane: 0.1
   far clip plane: 5000
-  field of view: 50
+  field of view: 80
   orthographic: 0
   orthographic size: 10
   m_Depth: -1
@@ -369,7 +369,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 207014735}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.10422138, y: 0.08202825, z: 0.008625622, w: 0.9911281}
+  m_LocalRotation: {x: -0.12259615, y: 0.08185408, z: 0.010146367, w: 0.9890234}
   m_LocalPosition: {x: 0, y: 1, z: -5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -1670,7 +1670,7 @@ MonoBehaviour:
   m_Follow: {fileID: 1287771033}
   m_CommonLens: 1
   m_Lens:
-    FieldOfView: 50
+    FieldOfView: 80
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1816,7 +1816,7 @@ MonoBehaviour:
   m_LookAt: {fileID: 0}
   m_Follow: {fileID: 0}
   m_Lens:
-    FieldOfView: 50
+    FieldOfView: 80
     OrthographicSize: 10
     NearClipPlane: 0.1
     FarClipPlane: 5000
@@ -1925,9 +1925,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 6
-  jumpForce: 12
-  jumpCooldown: 0.25
-  airMultiplyer: 0.4
+  jumpForce: 8
+  chargeJumpMulti: 1.5
+  chargeTime: 5
+  jumpCoolDown: 0.25
+  airMultiplier: 0.4
   jumpKey: 32
   groundDrag: 7
   playerHeight: 2
