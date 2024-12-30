@@ -10,10 +10,11 @@ public class DeliveryPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        Debug.Log(other + " entered collider");
         if (other.CompareTag("Player") && truckDestroyed == true)
         {
-            Player player = GetComponent<Player>();
-            player.deliverableItemHeld = false;
+            Player player = other.GetComponent<Player>();
+            player.DeliveryItemVisibility(false);
             DeliveryMade();
         }
         if (other.CompareTag("Truck"))
@@ -26,8 +27,8 @@ public class DeliveryPoint : MonoBehaviour
 
     private void DeliveryMade()
     {
-        waveManager.delivered[deliveryPointIndex] = true;
-        Destroy(gameObject.GetComponent<Collider>());
-        Destroy(gameObject.GetComponent<DeliveryPoint>(), .001f);
+        waveManager.delivered[deliveryPointIndex] = true; 
+        gameObject.GetComponent<Collider>().enabled = false;
+        Destroy(gameObject.GetComponent<DeliveryPoint>(), .1f);
     }
 }

@@ -15,6 +15,9 @@ public class Player : MonoBehaviour
     public bool deliverableItemHeld;
     [SerializeField] private GameObject deliveryItemObject;
 
+    public BaseManager baseManager;
+    public WaveManager waveManager;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EnemyBullet"))
@@ -28,12 +31,13 @@ public class Player : MonoBehaviour
     {
         health = maxHealth;
         UpdateHPUI();
+        if (health <= 0) baseManager.ResetPlayer();
     }
 
     private void UpdateHPUI()
     {
-        healthUI.value = health;
         healthUI.maxValue = maxHealth;
+        healthUI.value = health;
     }
 
     public void UpdateSpeedBoostUI(int count)
@@ -41,15 +45,23 @@ public class Player : MonoBehaviour
         speedBoostCountUI.text = count.ToString();
     }
 
-    public void DeliveryItemVisibility()
+    public void DeliveryItemVisibility(bool pickup)
     {
-        if (deliverableItemHeld == true)
+        if (pickup == true)
         {
+            Debug.Log("pickup item" + deliverableItemHeld);
+            if (deliverableItemHeld == true) return;
+            Debug.Log("pickup 2");
             deliveryItemObject.SetActive(true);
+            deliverableItemHeld = true;
+
+            if (waveManager.nextWaveCanSpawn == true) waveManager.SpawnWave();
         }
         else
         {
+            if (deliverableItemHeld == false) return;
             deliveryItemObject.SetActive(false);
+            deliverableItemHeld = false;
         }
     }
 }

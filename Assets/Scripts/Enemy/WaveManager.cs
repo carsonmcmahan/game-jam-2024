@@ -17,6 +17,7 @@ public class WaveManager : MonoBehaviour
     private void Start()
     {
         waveCount = 1;
+        nextWaveCanSpawn = true;
     }
 
     private void Update()
@@ -29,6 +30,8 @@ public class WaveManager : MonoBehaviour
 
     public void SpawnWave()
     {
+        Debug.Log("spawning wave");
+        nextWaveCanSpawn = false;
         List<GameObject> availablePairs = new List<GameObject>(deliverySpawnPointPairs);
         trucks = new List<GameObject>();
         delivered = new List<bool>();
@@ -55,9 +58,13 @@ public class WaveManager : MonoBehaviour
             // Randomly assign spawn and delivery points
             Transform spawnPoint = Random.Range(0, 2) == 0 ? pointA : pointB;
             Transform deliveryPoint = spawnPoint == pointA ? pointB : pointA;
+
+            // add components
             DeliveryPoint dPScript = deliveryPoint.AddComponent<DeliveryPoint>();
+            deliveryPoint.GetComponent<SphereCollider>().enabled = true;
             dPScript.waveManager = this;
             dPScript.deliveryPointIndex = i;
+            delivered.Add(false);
 
             // Spawn the enemy at the spawn point
             GameObject truck = Instantiate(truckPrefab, spawnPoint.position, Quaternion.identity);

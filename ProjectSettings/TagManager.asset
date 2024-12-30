@@ -6,6 +6,9 @@ TagManager:
   tags:
   - CinemachineTarget
   - Truck
+  - DeliveryPoint
+  - DeliveryReplenish
+  - EnemyBullet
   layers:
   - Default
   - TransparentFX
