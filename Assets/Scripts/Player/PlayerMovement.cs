@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -9,9 +10,13 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Jumping")]
     public float jumpForce;
-    public float jumpCooldown;
-    public float airMultiplyer;
-    bool readyToJump;
+    public float chargeJumpMulti;
+    public float chargeTime;
+    public float jumpCoolDown;
+    public float airMultiplier;
+
+    private float defaultJumpForce;
+    private float defaultChargeTime;
 
     [Header("Key Codes")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -31,25 +36,25 @@ public class PlayerMovement : MonoBehaviour
     Vector3 moveDirection;
     Rigidbody rb;
 
+    bool isChargingJump = false;
+
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
         rb.freezeRotation = true;
-    }
-
-    private void Start()
-    {
-        readyToJump = true;
+        defaultJumpForce = jumpForce;
+        defaultChargeTime = chargeTime;
     }
 
     private void Update()
     {
         isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayerMask);
 
-        MyInput();
+        PlayerInput();
         SpeedControl();
+        ChargeJump();
 
-        if(isGrounded)
+        if (isGrounded)
         {
             rb.drag = groundDrag;
         } 
@@ -57,7 +62,6 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.drag = 0;
         }
-
     }
 
     private void FixedUpdate()
@@ -65,23 +69,26 @@ public class PlayerMovement : MonoBehaviour
         MovePlayer();
     }
 
-    private void MyInput()
+    private void PlayerInput()
     {
         horizonatalInput = Input.GetAxisRaw("Horizontal");
         verticalInput = Input.GetAxisRaw("Vertical");
 
-        if(Input.GetKey(jumpKey) && readyToJump && isGrounded)
+        if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
-            readyToJump = false;
+            isChargingJump = true;
+        }
+
+        if (Input.GetKeyUp(jumpKey) && isGrounded )
+        {
             Jump();
-            Invoke(nameof(ResetJump), jumpCooldown);
+            ResetJump();
         }
     }
 
     private void MovePlayer()
     {
         moveDirection = orientation.forward * verticalInput + orientation.right * horizonatalInput;
-        
 
         if(isGrounded)
         {
@@ -89,7 +96,7 @@ public class PlayerMovement : MonoBehaviour
         }
         else
         {
-            rb.AddForce(10f * moveSpeed * airMultiplyer * moveDirection.normalized, ForceMode.Force);
+            rb.AddForce(10f * moveSpeed * airMultiplier * moveDirection.normalized, ForceMode.Force);
         }
     }
 
@@ -107,12 +114,37 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+        Vector3 moveInput = new Vector3(horizonatalInput, 0f, verticalInput);
 
-        rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        if (moveInput.magnitude > 0.1f)
+        {
+            Vector3 horizontalDirection = orientation.forward * verticalInput + orientation.right * horizonatalInput;
+            Vector3 jumpDirection = (horizontalDirection.normalized + 1.5f * Vector3.up).normalized;
+            rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
+        }
+        else
+        {
+            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
+        }
+    }
+
+    private void ChargeJump()
+    {
+        if (!isChargingJump) return;
+
+        chargeTime -= Time.deltaTime;
+        jumpForce += chargeJumpMulti * Time.deltaTime;
+
+        if (chargeTime <= 0)
+        {
+            isChargingJump = false;
+        }
     }
 
     private void ResetJump()
     {
-        readyToJump = true;
+        isChargingJump = false;
+        jumpForce = defaultJumpForce;
+        chargeTime = defaultChargeTime;
     }
 }

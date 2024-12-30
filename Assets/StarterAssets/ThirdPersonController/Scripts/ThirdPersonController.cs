@@ -22,10 +22,10 @@ namespace StarterAssets
         public float speedBoostCount = 3f;
         public float speedBoostDuration = 10f;
 
-        private float speedBoost;
+        private float speedBoostValue;
         private bool canSpeedBoost = false;
-        private float defaultDurration;
-        private float defualtMoveSpeed;
+        private float defaultDuration;
+        private float defaultMoveSpeed;
 
         [Space]
         [Tooltip("How fast the character turns to face movement direction")]
@@ -129,7 +129,6 @@ namespace StarterAssets
             }
         }
 
-
         private void Awake()
         {
             // get a reference to our main camera
@@ -138,9 +137,9 @@ namespace StarterAssets
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
 
-            defualtMoveSpeed = MoveSpeed;
-            defaultDurration = speedBoostDuration;
-            speedBoost = MoveSpeed * speedBoostMultiplier;
+            defaultMoveSpeed = MoveSpeed;
+            defaultDuration = speedBoostDuration;
+            speedBoostValue = MoveSpeed * speedBoostMultiplier;
         }
 
         private void Start()
@@ -196,18 +195,23 @@ namespace StarterAssets
 
         private void SpeedBoost()
         {
-            if (!canSpeedBoost || speedBoostCount == 0) return;
+            if (!canSpeedBoost || speedBoostCount <= 0) return;
 
-            MoveSpeed = speedBoost;
+            MoveSpeed = speedBoostValue;
             speedBoostDuration -= Time.deltaTime;
 
             if (speedBoostDuration <= 0)
             {
-                canSpeedBoost = false;
+                ResetSpeedBoost();
                 speedBoostCount--;
-                MoveSpeed = defualtMoveSpeed;
-                speedBoostDuration = defaultDurration;
             }
+        }
+
+        private void ResetSpeedBoost()
+        {
+            canSpeedBoost = false;
+            MoveSpeed = defaultMoveSpeed;
+            speedBoostDuration = defaultDuration;
         }
 
         private void GroundedCheck()
