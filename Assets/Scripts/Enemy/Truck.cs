@@ -24,12 +24,13 @@ public class Truck : MonoBehaviour
         if (health <= 0) Destroyed();
     }
 
-    private void Destroyed()
+    public void Destroyed()
     {
         GetComponent<Collider>().enabled = false;
         agent.enabled = false;
         deliveryPoint.gameObject.GetComponent<DeliveryPoint>().truckDestroyed = true;
         waveManager.trucks.Remove(gameObject);
+        Destroy(gameObject, 10f);
         //apply burnt shader material here
     }
 }

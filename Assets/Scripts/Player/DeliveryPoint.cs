@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class DeliveryPoint : MonoBehaviour
@@ -19,9 +20,9 @@ public class DeliveryPoint : MonoBehaviour
         }
         if (other.CompareTag("Truck"))
         {
-            Truck truck = GetComponent<Truck>();
+            Truck truck = other.GetComponent<Truck>();
             DeliveryMade();
-            Destroy(other);
+            truck.Destroyed();
         }
     }
 

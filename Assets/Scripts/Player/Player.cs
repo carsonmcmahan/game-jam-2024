@@ -50,12 +50,11 @@ public class Player : MonoBehaviour
         if (pickup == true)
         {
             Debug.Log("pickup item" + deliverableItemHeld);
+            if (waveManager.nextWaveCanSpawn == true) waveManager.SpawnWave();
             if (deliverableItemHeld == true) return;
             Debug.Log("pickup 2");
             deliveryItemObject.SetActive(true);
             deliverableItemHeld = true;
-
-            if (waveManager.nextWaveCanSpawn == true) waveManager.SpawnWave();
         }
         else
         {
