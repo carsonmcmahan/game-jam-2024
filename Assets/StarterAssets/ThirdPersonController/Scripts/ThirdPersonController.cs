@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using System;
+using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
@@ -16,11 +17,17 @@ namespace StarterAssets
     {
         [Header("Player")]
         [Tooltip("Move speed of the character in m/s")]
-        public float MoveSpeed = 2.0f;
+        public float MoveSpeed = 5.335f;
+        public float speedBoostMultiplier = 3f;
+        public float speedBoostCount = 3f;
+        public float speedBoostDuration = 10f;
 
-        [Tooltip("Sprint speed of the character in m/s")]
-        public float SprintSpeed = 5.335f;
+        private float speedBoost;
+        private bool canSpeedBoost = false;
+        private float defaultDurration;
+        private float defualtMoveSpeed;
 
+        [Space]
         [Tooltip("How fast the character turns to face movement direction")]
         [Range(0.0f, 0.3f)]
         public float RotationSmoothTime = 0.12f;
@@ -130,6 +137,10 @@ namespace StarterAssets
             {
                 _mainCamera = GameObject.FindGameObjectWithTag("MainCamera");
             }
+
+            defualtMoveSpeed = MoveSpeed;
+            defaultDurration = speedBoostDuration;
+            speedBoost = MoveSpeed * speedBoostMultiplier;
         }
 
         private void Start()
@@ -159,6 +170,14 @@ namespace StarterAssets
             JumpAndGravity();
             GroundedCheck();
             Move();
+
+            if (Input.GetKeyUp(KeyCode.LeftShift) && speedBoostCount > 0)
+            {
+                canSpeedBoost = true;
+            }
+
+            SpeedBoost();
+            Debug.Log(speedBoostCount);
         }
 
         private void LateUpdate()
@@ -173,6 +192,22 @@ namespace StarterAssets
             _animIDJump = Animator.StringToHash("Jump");
             _animIDFreeFall = Animator.StringToHash("FreeFall");
             _animIDMotionSpeed = Animator.StringToHash("MotionSpeed");
+        }
+
+        private void SpeedBoost()
+        {
+            if (!canSpeedBoost || speedBoostCount == 0) return;
+
+            MoveSpeed = speedBoost;
+            speedBoostDuration -= Time.deltaTime;
+
+            if (speedBoostDuration <= 0)
+            {
+                canSpeedBoost = false;
+                speedBoostCount--;
+                MoveSpeed = defualtMoveSpeed;
+                speedBoostDuration = defaultDurration;
+            }
         }
 
         private void GroundedCheck()
@@ -214,7 +249,7 @@ namespace StarterAssets
         private void Move()
         {
             // set target speed based on move speed, sprint speed and if sprint is pressed
-            float targetSpeed = _input.sprint ? SprintSpeed : MoveSpeed;
+            float targetSpeed = MoveSpeed;
 
             // a simplistic acceleration and deceleration designed to be easy to remove, replace, or iterate upon
 
@@ -376,7 +411,7 @@ namespace StarterAssets
             {
                 if (FootstepAudioClips.Length > 0)
                 {
-                    var index = Random.Range(0, FootstepAudioClips.Length);
+                    var index = UnityEngine.Random.Range(0, FootstepAudioClips.Length);
                     AudioSource.PlayClipAtPoint(FootstepAudioClips[index], transform.TransformPoint(_controller.center), FootstepAudioVolume);
                 }
             }
