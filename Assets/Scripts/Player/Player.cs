@@ -9,6 +9,10 @@ public class Player : MonoBehaviour
     [SerializeField] private int maxHealth;
     [SerializeField] private Slider healthUI;
 
+
+    public bool deliverableItemHeld;
+    [SerializeField] private GameObject deliveryItemObject;
+
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("EnemyBullet"))
@@ -20,5 +24,17 @@ public class Player : MonoBehaviour
     public void ResetHP()
     {
         health = maxHealth;
+    }
+
+    public void DeliveryItemVisibility()
+    {
+        if (deliverableItemHeld == true)
+        {
+            deliveryItemObject.SetActive(true);
+        }
+        else
+        {
+            deliveryItemObject.SetActive(false);
+        }
     }
 }

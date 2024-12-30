@@ -5,27 +5,33 @@ using UnityEngine;
 
 public class WaveManager : MonoBehaviour
 {
-    private int waveCount = 1;
+    private int waveCount;
     [SerializeField] private List<GameObject> deliverySpawnPointPairs = new List<GameObject>();
     [SerializeField] private GameObject truckPrefab;
 
     public List<GameObject> trucks = new List<GameObject>();
     public List<bool> delivered = new List<bool>();
 
-    //public bool nextWaveCanSpawn;
+    public bool nextWaveCanSpawn;
+
+    private void Start()
+    {
+        waveCount = 1;
+    }
 
     private void Update()
     {
         if (delivered.Count > 0 && delivered.TrueForAll(status => status))
         {
-            //nextWaveCanSpawn = true;
-            SpawnWave();
+            nextWaveCanSpawn = true;
         }
     }
 
     public void SpawnWave()
     {
         List<GameObject> availablePairs = new List<GameObject>(deliverySpawnPointPairs);
+        trucks = new List<GameObject>();
+        delivered = new List<bool>();
 
         for (int i = 0; i < waveCount; i++)
         {
@@ -65,5 +71,6 @@ public class WaveManager : MonoBehaviour
                 truckScript.deliveryPoint = deliveryPoint;
             }
         }
+        waveCount++;
     }
 }

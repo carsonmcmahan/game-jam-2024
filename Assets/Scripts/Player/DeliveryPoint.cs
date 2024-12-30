@@ -12,7 +12,7 @@ public class DeliveryPoint : MonoBehaviour
     {
         if (other.CompareTag("Player") && truckDestroyed == true)
         {
-            DeliveryPlayerScript player = GetComponent<DeliveryPlayerScript>();
+            Player player = GetComponent<Player>();
             player.deliverableItemHeld = false;
             DeliveryMade();
         }
