@@ -19,11 +19,6 @@ public class Truck : MonoBehaviour
         agent.SetDestination(deliveryPoint.position);
     }
 
-    void Update()
-    {
-        if (health <= 0) Destroyed();
-    }
-
     public void Destroyed()
     {
         GetComponent<Collider>().enabled = false;
@@ -32,5 +27,13 @@ public class Truck : MonoBehaviour
         waveManager.trucks.Remove(gameObject);
         Destroy(gameObject, 10f);
         //apply burnt shader material here
+    }
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("PlayerAttack1"))
+        {
+            health--;
+            if (health <= 0) Destroyed();
+        }
     }
 }
