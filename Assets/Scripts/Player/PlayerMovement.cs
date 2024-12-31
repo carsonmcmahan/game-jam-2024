@@ -6,9 +6,6 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [Header("Player Speed")]
-    public float moveSpeed;
-
     [Header("Jumping")]
     [SerializeField] private GameObject jumpVFXPrefab;
     private GameObject jumpVFX;
@@ -16,44 +13,52 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
     public float chargeJumpMulti;
     public float chargeTime;
-    public float jumpCoolDown;
-    public float airMultiplier;
 
     private float defaultJumpForce;
     private float defaultChargeTime;
-    private float verticalVelocity; // Tracks vertical movement for jumping
+    private float verticalVelocity;
 
     [Header("Key Codes")]
     public KeyCode jumpKey = KeyCode.Space;
 
     [Header("Ground Check")]
-    public float groundDrag;
-    public float playerHeight;
-    public LayerMask groundLayerMask;
     bool isGrounded;
 
     [Header("Direction")]
     public Transform orientation;
+    private StarterAssetsInputs starterAssetsInputs;
+    private Vector2 moveDirection;
+    private ThirdPersonController thirdPersonController;
+    private float speed;
 
     CharacterController characterController;
 
     bool isChargingJump = false;
+    bool canApplyMovement = false;
+    private Vector3 jumpDirection; // Stores the jump direction
 
     private void Awake()
     {
         characterController = GetComponent<CharacterController>();
         defaultJumpForce = jumpForce;
         defaultChargeTime = chargeTime;
+        starterAssetsInputs = GetComponent<StarterAssetsInputs>();
+        thirdPersonController = GetComponent<ThirdPersonController>();
     }
 
     private void Update()
     {
         isGrounded = GetComponent<ThirdPersonController>().Grounded;
+        moveDirection = starterAssetsInputs.move;
+        speed = thirdPersonController.MoveSpeed;
 
         PlayerInput();
         ChargeJump();
 
-        ApplyMovement();
+        if (canApplyMovement)
+        {
+            ApplyMovement();
+        }
     }
 
     private void PlayerInput()
@@ -67,20 +72,41 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyUp(jumpKey) && isGrounded)
         {
             Destroy(jumpVFX);
+
+            // Calculate jump direction using speed
+            Vector3 forward = orientation.forward * moveDirection.y;
+            Vector3 right = orientation.right * moveDirection.x;
+            jumpDirection = (forward + right).normalized * speed * 0.5f; // Scale horizontal influence by speed
+
             Jump();
             ResetJump();
+            canApplyMovement = true; // Enable movement after jump key is released
         }
     }
 
     private void ApplyMovement()
     {
+        // Apply gravity to vertical velocity
         verticalVelocity += Physics.gravity.y * Time.deltaTime;
-        characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
+
+        // Combine vertical and horizontal movement
+        Vector3 movement = (jumpDirection * Time.deltaTime) // Use jumpDirection scaled by speed
+                         + (Vector3.up * verticalVelocity * Time.deltaTime);
+
+        // Move the character
+        characterController.Move(movement);
+
+        // Reset `canApplyMovement` if grounded
+        if (isGrounded && verticalVelocity < 0)
+        {
+            verticalVelocity = -2f; // Ensure grounded state
+            canApplyMovement = false; // Stop applying movement until the next jump
+        }
     }
 
     private void Jump()
     {
-        verticalVelocity = jumpForce;
+        verticalVelocity = jumpForce; // Maintain vertical strength
     }
 
     private void ChargeJump()
