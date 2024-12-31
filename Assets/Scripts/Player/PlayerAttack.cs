@@ -12,6 +12,7 @@ public class PlayerAttack : MonoBehaviour
 
     [Header("Spawn Position")]
     public Transform spawnPoint;
+    [SerializeField] private Transform beamSpawnPosition;
 
     [Header("Cool Downs")]
     public float primaryFireCoolDown;
@@ -44,7 +45,8 @@ public class PlayerAttack : MonoBehaviour
 
         if(Input.GetMouseButtonDown(1) && canFireAlt)
         {
-            SpawnProjectile(projectileTwo, projectileTwoForce);
+            Destroy(Instantiate(projectileTwo, beamSpawnPosition), 1.5f);
+            
             canFireAlt = false;
             Invoke(nameof(RestAltFire), altFireCoolDown);
         }

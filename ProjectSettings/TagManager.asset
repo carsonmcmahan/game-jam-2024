@@ -9,6 +9,8 @@ TagManager:
   - DeliveryPoint
   - DeliveryReplenish
   - EnemyBullet
+  - PlayerAttack2
+  - PlayerAttack1
   layers:
   - Default
   - TransparentFX

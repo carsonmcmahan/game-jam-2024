@@ -1,3 +1,4 @@
+using StarterAssets;
 using System;
 using System.Collections;
 using System.Collections.Generic;
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
 
     private float defaultJumpForce;
     private float defaultChargeTime;
+    private float verticalVelocity; // Tracks vertical movement for jumping
 
     [Header("Key Codes")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -33,40 +35,25 @@ public class PlayerMovement : MonoBehaviour
     float horizonatalInput;
     float verticalInput;
 
-    Vector3 moveDirection;
-    Rigidbody rb;
+    CharacterController characterController;
 
     bool isChargingJump = false;
 
     private void Awake()
     {
-        rb = GetComponent<Rigidbody>();
-        rb.freezeRotation = true;
+        characterController = GetComponent<CharacterController>();
         defaultJumpForce = jumpForce;
         defaultChargeTime = chargeTime;
     }
 
     private void Update()
     {
-        isGrounded = Physics.Raycast(transform.position, Vector3.down, playerHeight * 0.5f + 0.2f, groundLayerMask);
+        isGrounded = GetComponent<ThirdPersonController>().Grounded;
 
         PlayerInput();
-        SpeedControl();
         ChargeJump();
 
-        if (isGrounded)
-        {
-            rb.drag = groundDrag;
-        } 
-        else
-        {
-            rb.drag = 0;
-        }
-    }
-
-    private void FixedUpdate()
-    {
-        MovePlayer();
+        ApplyMovement();
     }
 
     private void PlayerInput()
@@ -79,53 +66,22 @@ public class PlayerMovement : MonoBehaviour
             isChargingJump = true;
         }
 
-        if (Input.GetKeyUp(jumpKey) && isGrounded )
+        if (Input.GetKeyUp(jumpKey) && isGrounded)
         {
             Jump();
             ResetJump();
         }
     }
 
-    private void MovePlayer()
+    private void ApplyMovement()
     {
-        moveDirection = orientation.forward * verticalInput + orientation.right * horizonatalInput;
-
-        if(isGrounded)
-        {
-            rb.AddForce(10f * moveSpeed * moveDirection.normalized, ForceMode.Force);
-        }
-        else
-        {
-            rb.AddForce(10f * moveSpeed * airMultiplier * moveDirection.normalized, ForceMode.Force);
-        }
-    }
-
-    private void SpeedControl()
-    {
-        Vector3 flatVel = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-
-        if(flatVel.magnitude > moveSpeed)
-        {
-            Vector3 limitedVel = flatVel.normalized * moveSpeed;
-            rb.velocity = new Vector3(limitedVel.x, rb.velocity.y, limitedVel.z);
-        }
+        verticalVelocity += Physics.gravity.y * Time.deltaTime;
+        characterController.Move(Vector3.up * verticalVelocity * Time.deltaTime);
     }
 
     private void Jump()
     {
-        rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
-        Vector3 moveInput = new Vector3(horizonatalInput, 0f, verticalInput);
-
-        if (moveInput.magnitude > 0.1f)
-        {
-            Vector3 horizontalDirection = orientation.forward * verticalInput + orientation.right * horizonatalInput;
-            Vector3 jumpDirection = (horizontalDirection.normalized + 1.5f * Vector3.up).normalized;
-            rb.AddForce(jumpDirection * jumpForce, ForceMode.Impulse);
-        }
-        else
-        {
-            rb.AddForce(transform.up * jumpForce, ForceMode.Impulse);
-        }
+        verticalVelocity = jumpForce;
     }
 
     private void ChargeJump()
