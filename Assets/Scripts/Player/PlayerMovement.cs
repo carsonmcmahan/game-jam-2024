@@ -10,6 +10,9 @@ public class PlayerMovement : MonoBehaviour
     public float moveSpeed;
 
     [Header("Jumping")]
+    [SerializeField] private GameObject jumpVFXPrefab;
+    private GameObject jumpVFX;
+
     public float jumpForce;
     public float chargeJumpMulti;
     public float chargeTime;
@@ -31,9 +34,6 @@ public class PlayerMovement : MonoBehaviour
 
     [Header("Direction")]
     public Transform orientation;
-
-    float horizonatalInput;
-    float verticalInput;
 
     CharacterController characterController;
 
@@ -58,16 +58,15 @@ public class PlayerMovement : MonoBehaviour
 
     private void PlayerInput()
     {
-        horizonatalInput = Input.GetAxisRaw("Horizontal");
-        verticalInput = Input.GetAxisRaw("Vertical");
-
         if (Input.GetKeyDown(jumpKey) && isGrounded)
         {
             isChargingJump = true;
+            jumpVFX = Instantiate(jumpVFXPrefab, gameObject.transform);
         }
 
         if (Input.GetKeyUp(jumpKey) && isGrounded)
         {
+            Destroy(jumpVFX);
             Jump();
             ResetJump();
         }

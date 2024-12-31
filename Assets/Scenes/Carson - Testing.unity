@@ -1814,7 +1814,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1282116760}
   serializedVersion: 2
-  m_LocalRotation: {x: -0.112482674, y: 0.0819535, z: 0.009309351, w: 0.99022454}
+  m_LocalRotation: {x: -0.11248265, y: 0.081953466, z: 0.009309346, w: 0.99022454}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -2387,6 +2387,12 @@ PrefabInstance:
       propertyPath: m_Name
       value: PlayerArmature
       objectReference: {fileID: 0}
+    - target: {fileID: 4928366983806735166, guid: 4b79d3f8b845f3b439436ffbdd55d052,
+        type: 3}
+      propertyPath: jumpVFXPrefab
+      value: 
+      objectReference: {fileID: 1882324121113351016, guid: 8335a3f4bdf71cd4bbb1dc87d7b318cf,
+        type: 3}
     - target: {fileID: 6195157302924466995, guid: 4b79d3f8b845f3b439436ffbdd55d052,
         type: 3}
       propertyPath: m_LocalPosition.x
