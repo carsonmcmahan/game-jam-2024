@@ -32,21 +32,36 @@ public class Truck : MonoBehaviour
 
     private void AddBurningShader()
     {
-        MeshRenderer mesh = GetComponent<MeshRenderer>();
-        List<Material> materials = new List<Material>();
-        Material currentMaterial = mesh.material;
-        materials.Add(currentMaterial);
-        materials.Add(burningShader);
-        mesh.materials = new Material[materials.Count];
-        for (int i = 0; i < materials.Count; i++)
+        // Get the MeshRenderer component from the child object
+        MeshRenderer mesh = GetComponentInChildren<MeshRenderer>();
+        if (mesh == null)
         {
-            mesh.materials[i] = materials[i];
+            Debug.LogError("MeshRenderer component is missing on the child object.");
+            return;
         }
+
+        // Retrieve the shared materials to avoid creating material instances
+        Material[] currentMaterials = mesh.sharedMaterials;
+
+        // Create a new array with one extra slot for the burning shader
+        Material[] newMaterials = new Material[currentMaterials.Length + 1];
+
+        // Copy the existing materials to the new array
+        for (int i = 0; i < currentMaterials.Length; i++)
+        {
+            newMaterials[i] = currentMaterials[i];
+        }
+
+        // Add the burning shader material to the new array
+        newMaterials[newMaterials.Length - 1] = burningShader;
+
+        // Apply the updated materials array to the MeshRenderer
+        mesh.materials = newMaterials; // This applies the new material array
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("PlayerAttack1"))
+        if (other.CompareTag("PlayerAttack2"))
         {
             health--;
             if (health <= 0) Destroyed();

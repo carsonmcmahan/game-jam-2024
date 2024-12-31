@@ -41,8 +41,9 @@ namespace StarterAssets
 
 		public void OnSprint(InputValue value)
 		{
-			SprintInput(value.isPressed);
-		}
+			SprintInput(value.isPressed); 
+			GetComponent<Player>().UpdateSpeedBoostUI((int)GetComponent<ThirdPersonController>().speedBoostCount);
+        }
 #endif
 
 

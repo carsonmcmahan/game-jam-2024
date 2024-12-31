@@ -27,8 +27,8 @@ Transform:
   m_GameObject: {fileID: 3402041130634406729}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 1.495, z: 0}
-  m_LocalScale: {x: 5, y: 5, z: 7}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1.5}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 6359593497953437123}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 10
   health: 2
-  burningShader: {fileID: 0}
+  burningShader: {fileID: 2100000, guid: 9c07576abbeeed441a8ac2add0c3432d, type: 2}
   deliveryPoint: {fileID: 0}
   waveManager: {fileID: 0}
 --- !u!195 &4753406149935378517
@@ -177,8 +177,8 @@ BoxCollider:
   m_ProvidesContacts: 0
   m_Enabled: 1
   serializedVersion: 3
-  m_Size: {x: 1.9641266, y: 2.9730942, z: 9.991029}
-  m_Center: {x: 0.011211395, y: 1.502242, z: -0.011210918}
+  m_Size: {x: 2.7734337, y: 2.9730942, z: 11.196454}
+  m_Center: {x: 0.022996902, y: 1.502242, z: 0.0076231956}
 --- !u!54 &-6722068072670134600
 Rigidbody:
   m_ObjectHideFlags: 0
