@@ -58,21 +58,21 @@ public class PlayerAttack : MonoBehaviour
         GameObject projectile = Instantiate(gameObject, spawnPoint.position, Quaternion.identity);
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
-        Vector3 forceToAdd = CalculateDirection() * projectileForce + transform.up;
+        Vector3 forceToAdd = mainCamera.transform.forward * projectileForce + transform.up;
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
     }
 
     // calculates the direction based on the cameras position
-    private Vector3 CalculateDirection()
-    {
-        Vector3 forceDirection = mainCamera.transform.forward;
-        if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, 500f))
-        {
-            forceDirection = (hit.point - spawnPoint.position).normalized;
-        }
+    //private Vector3 CalculateDirection()
+    //{
+    //    Vector3 forceDirection = mainCamera.transform.forward;
+    //    if (Physics.Raycast(mainCamera.transform.position, mainCamera.transform.forward, out RaycastHit hit, 500f))
+    //    {
+    //        forceDirection = (hit.point - spawnPoint.position).normalized;
+    //    }
 
-        return forceDirection;
-    }
+    //    return forceDirection;
+    //}
 
     private void ResetPrimaryFire()
     {
