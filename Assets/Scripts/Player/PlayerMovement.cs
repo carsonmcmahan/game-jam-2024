@@ -91,6 +91,7 @@ public class PlayerMovement : MonoBehaviour
         }
         if (Input.GetKeyUp(jumpKey) && !isGrounded)
         {
+            jumpSlider.gameObject.SetActive(false);
             Destroy(jumpVFX);
             ResetJump();
         }
