@@ -10347,17 +10347,17 @@ PrefabInstance:
     - target: {fileID: 3208943728805419000, guid: 38b130b2d2896f74f9b3a4903a227732,
         type: 3}
       propertyPath: m_LocalRotation.x
-      value: -0.19432195
+      value: -0.19432193
       objectReference: {fileID: 0}
     - target: {fileID: 3208943728805419000, guid: 38b130b2d2896f74f9b3a4903a227732,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.08089718
+      value: 0.08089715
       objectReference: {fileID: 0}
     - target: {fileID: 3208943728805419000, guid: 38b130b2d2896f74f9b3a4903a227732,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.016082535
+      value: 0.016082525
       objectReference: {fileID: 0}
     - target: {fileID: 4055659059188163881, guid: 38b130b2d2896f74f9b3a4903a227732,
         type: 3}
@@ -10432,7 +10432,7 @@ PrefabInstance:
     - target: {fileID: 4895440962293172855, guid: 38b130b2d2896f74f9b3a4903a227732,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.080945246
+      value: 0.08094523
       objectReference: {fileID: 0}
     - target: {fileID: 4895440962293172855, guid: 38b130b2d2896f74f9b3a4903a227732,
         type: 3}
@@ -42982,12 +42982,12 @@ PrefabInstance:
     - target: {fileID: 7526338401972337448, guid: cc719bb53877e2c42a93ac350872a089,
         type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0.08094527
+      value: 0.08094523
       objectReference: {fileID: 0}
     - target: {fileID: 7526338401972337448, guid: cc719bb53877e2c42a93ac350872a089,
         type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0.015838971
+      value: 0.015838966
       objectReference: {fileID: 0}
     - target: {fileID: 7526338401972337448, guid: cc719bb53877e2c42a93ac350872a089,
         type: 3}
@@ -49251,6 +49251,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1125652622881608849, guid: 4b79d3f8b845f3b439436ffbdd55d052,
+        type: 3}
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 2100000, guid: 2587267e1652a284d825b158a5760a42, type: 2}
+    - target: {fileID: 1125652622881608849, guid: 4b79d3f8b845f3b439436ffbdd55d052,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: d51a9245c157bd14ba58d93f187f0bd6, type: 2}
+    - target: {fileID: 1125652622881608849, guid: 4b79d3f8b845f3b439436ffbdd55d052,
+        type: 3}
+      propertyPath: m_Materials.Array.data[2]
+      value: 
+      objectReference: {fileID: 2100000, guid: 1694debf7dbc85244a28f2912a1707e6, type: 2}
     - target: {fileID: 1960241083626236951, guid: 4b79d3f8b845f3b439436ffbdd55d052,
         type: 3}
       propertyPath: healthUI
