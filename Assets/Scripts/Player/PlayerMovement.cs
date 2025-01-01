@@ -3,6 +3,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class PlayerMovement : MonoBehaviour
 {
@@ -17,6 +18,7 @@ public class PlayerMovement : MonoBehaviour
     private float defaultJumpForce;
     private float defaultChargeTime;
     private float verticalVelocity;
+    public Slider jumpSlider;
 
     [Header("Key Codes")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -44,6 +46,9 @@ public class PlayerMovement : MonoBehaviour
         defaultChargeTime = chargeTime;
         starterAssetsInputs = GetComponent<StarterAssetsInputs>();
         thirdPersonController = GetComponent<ThirdPersonController>();
+        jumpSlider.maxValue = chargeTime;
+        jumpSlider.value = chargeTime;
+        jumpSlider.gameObject.SetActive(false);
     }
 
     private void Update()
@@ -67,10 +72,12 @@ public class PlayerMovement : MonoBehaviour
         {
             isChargingJump = true;
             jumpVFX = Instantiate(jumpVFXPrefab, gameObject.transform);
+            jumpSlider.gameObject.SetActive(true);
         }
 
         if (Input.GetKeyUp(jumpKey) && isGrounded)
         {
+            jumpSlider.gameObject.SetActive(false);
             Destroy(jumpVFX);
 
             // Calculate jump direction using speed
@@ -81,6 +88,11 @@ public class PlayerMovement : MonoBehaviour
             Jump();
             ResetJump();
             canApplyMovement = true; // Enable movement after jump key is released
+        }
+        if (Input.GetKeyUp(jumpKey) && !isGrounded)
+        {
+            Destroy(jumpVFX);
+            ResetJump();
         }
     }
 
@@ -116,6 +128,7 @@ public class PlayerMovement : MonoBehaviour
         chargeTime -= Time.deltaTime;
         jumpForce += chargeJumpMulti * Time.deltaTime;
 
+        jumpSlider.value = chargeTime;
         if (chargeTime <= 0)
         {
             isChargingJump = false;

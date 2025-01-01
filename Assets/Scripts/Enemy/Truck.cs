@@ -12,6 +12,8 @@ public class Truck : MonoBehaviour
 
     public Transform deliveryPoint;
     public WaveManager waveManager;
+    public GameObject explosionPrefab;
+    public GameObject explosionPoints;
 
     void Start()
     {
@@ -28,6 +30,7 @@ public class Truck : MonoBehaviour
         waveManager.trucks.Remove(gameObject);
         Destroy(gameObject, 10f);
         AddBurningShader();
+        SpawnExplosions();
     }
 
     private void AddBurningShader()
@@ -57,6 +60,14 @@ public class Truck : MonoBehaviour
 
         // Apply the updated materials array to the MeshRenderer
         mesh.materials = newMaterials; // This applies the new material array
+    }
+
+    private void SpawnExplosions()
+    {
+        foreach (Transform t in explosionPoints.transform)
+        {
+            Instantiate(explosionPrefab, t);
+        }
     }
 
     private void OnTriggerEnter(Collider other)

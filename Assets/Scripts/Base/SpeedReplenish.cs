@@ -8,7 +8,7 @@ public class SpeedReplenish : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         ThirdPersonController player = other.GetComponent<ThirdPersonController>();
-        player.speedBoostCount = 3;
+        player.speedBoostCount = 5;
         player.GetComponent<Player>().UpdateSpeedBoostUI((int)player.speedBoostCount);
     }
 }

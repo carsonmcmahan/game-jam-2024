@@ -3,6 +3,7 @@ using UnityEngine;
 #if ENABLE_INPUT_SYSTEM 
 using UnityEngine.InputSystem;
 #endif
+using UnityEngine.UI;
 
 /* Note: animations are called via the controller for both the character and capsule using animator null checks
  */
@@ -26,6 +27,8 @@ namespace StarterAssets
         private bool canSpeedBoost = false;
         private float defaultDuration;
         private float defaultMoveSpeed;
+
+        public Slider speedBoostSlider;
 
         [Space]
         [Tooltip("How fast the character turns to face movement direction")]
@@ -140,6 +143,9 @@ namespace StarterAssets
             defaultMoveSpeed = MoveSpeed;
             defaultDuration = speedBoostDuration;
             speedBoostValue = MoveSpeed * speedBoostMultiplier;
+            GetComponent<Player>().UpdateSpeedBoostUI((int)GetComponent<ThirdPersonController>().speedBoostCount);
+            speedBoostSlider.maxValue = speedBoostDuration;
+            speedBoostSlider.value = speedBoostDuration;
         }
 
         private void Start()
@@ -170,13 +176,14 @@ namespace StarterAssets
             GroundedCheck();
             Move();
 
-            if (Input.GetKeyUp(KeyCode.LeftShift) && speedBoostCount > 0)
+            if (Input.GetKeyUp(KeyCode.LeftShift) && speedBoostCount > 0 && canSpeedBoost == false)
             {
                 canSpeedBoost = true;
+                speedBoostCount--;
+                GetComponent<Player>().UpdateSpeedBoostUI((int)GetComponent<ThirdPersonController>().speedBoostCount);
             }
 
             SpeedBoost();
-            Debug.Log(speedBoostCount);
         }
 
         private void LateUpdate()
@@ -199,11 +206,11 @@ namespace StarterAssets
 
             MoveSpeed = speedBoostValue;
             speedBoostDuration -= Time.deltaTime;
+            speedBoostSlider.value = speedBoostDuration;
 
             if (speedBoostDuration <= 0)
             {
                 ResetSpeedBoost();
-                speedBoostCount--;
             }
         }
 
@@ -212,6 +219,7 @@ namespace StarterAssets
             canSpeedBoost = false;
             MoveSpeed = defaultMoveSpeed;
             speedBoostDuration = defaultDuration;
+            speedBoostSlider.value = speedBoostDuration;
         }
 
         private void GroundedCheck()

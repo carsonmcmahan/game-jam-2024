@@ -26,6 +26,10 @@ public class WaveManager : MonoBehaviour
         {
             nextWaveCanSpawn = true;
         }
+        if (waveCount <= 5 && nextWaveCanSpawn)
+        {
+            //do something to end the game
+        }
     }
 
     public void SpawnWave()

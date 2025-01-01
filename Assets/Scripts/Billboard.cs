@@ -60,27 +60,22 @@ public class Billboard : MonoBehaviour
 
     private void ScaleBillboard()
     {
+        // Calculate the distance between the object and the player
         float distance = Vector3.Distance(transform.position, playerTransform.position);
 
-        if (distance >= 200f)
+        // Base scale factor
+        float baseScale = 1f;
+
+        // Scale dynamically based on distance, clamping the scale to avoid extreme values
+        float scaleFactor = Mathf.Clamp(distance / 10f, 1f, 25f); // Adjust the 5f max value as needed
+
+        // Apply the calculated scale
+        transform.localScale = new Vector3(baseScale * scaleFactor, baseScale * scaleFactor, baseScale * scaleFactor);
+
+        // Optionally adjust position if the object needs to remain at a fixed height
+        if (distance < 50f)
         {
-            transform.localScale = maxScale;
-            transform.localPosition = new Vector3(0, 25f, 0);
-        }
-        else if(distance >= 100 )
-        {
-            transform.localScale = medianScale;
-            transform.localPosition = new Vector3(0, 20f, 0);
-        }
-        else if (distance >= 50f)
-        {
-            transform.localScale = minScale;
-            transform.localPosition = new Vector3(0, 15f, 0);
-        }
-        else if(distance < 50f)
-        {
-            transform.localScale = new Vector3(1f, 1f, 1f);
-            transform.localPosition = new Vector3(0, 5f, 0);
+            transform.localPosition = new Vector3(transform.localPosition.x, 5f, transform.localPosition.z);
         }
     }
 }

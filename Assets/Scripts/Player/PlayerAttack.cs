@@ -36,14 +36,18 @@ public class PlayerAttack : MonoBehaviour
 
     private void Update()
     {
-        if(Input.GetMouseButtonDown(0) && canFirePrimary)
+
+        //pepsi shots, for killing guards, stretch goal
+        /*if(Input.GetMouseButtonDown(0) && canFirePrimary)
         {
             SpawnProjectile(projectileOne, projectileOneForce);
             canFirePrimary = false;
             Invoke(nameof(ResetPrimaryFire), primaryFireCoolDown);
-        }
+        }*/
 
-        if(Input.GetMouseButtonDown(1) && canFireAlt)
+
+        //beam attack, for killing trucks
+        if(Input.GetMouseButtonDown(0) && canFireAlt)
         {
             Destroy(Instantiate(projectileTwo, beamSpawnPosition), 1.5f);
             
@@ -53,14 +57,14 @@ public class PlayerAttack : MonoBehaviour
     }
 
     // spawn the object and add force to its rigid body
-    private void SpawnProjectile(GameObject gameObject, float projectileForce)
+    /*private void SpawnProjectile(GameObject gameObject, float projectileForce)
     {
         GameObject projectile = Instantiate(gameObject, spawnPoint.position, Quaternion.identity);
         Rigidbody projectileRb = projectile.GetComponent<Rigidbody>();
 
         Vector3 forceToAdd = mainCamera.transform.forward * projectileForce + transform.up;
         projectileRb.AddForce(forceToAdd, ForceMode.Impulse);
-    }
+    }*/
 
     // calculates the direction based on the cameras position
     //private Vector3 CalculateDirection()
