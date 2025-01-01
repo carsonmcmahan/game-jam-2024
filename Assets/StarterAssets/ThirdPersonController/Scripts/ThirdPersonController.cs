@@ -29,6 +29,7 @@ namespace StarterAssets
         private float defaultMoveSpeed;
 
         public Slider speedBoostSlider;
+        public AudioClip speedBoostAudio;
 
         [Space]
         [Tooltip("How fast the character turns to face movement direction")]
@@ -181,6 +182,7 @@ namespace StarterAssets
                 canSpeedBoost = true;
                 speedBoostCount--;
                 GetComponent<Player>().UpdateSpeedBoostUI((int)GetComponent<ThirdPersonController>().speedBoostCount);
+                AudioSource.PlayClipAtPoint(speedBoostAudio, transform.position, 1f);
             }
 
             SpeedBoost();

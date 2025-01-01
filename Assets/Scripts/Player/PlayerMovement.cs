@@ -19,6 +19,7 @@ public class PlayerMovement : MonoBehaviour
     private float defaultChargeTime;
     private float verticalVelocity;
     public Slider jumpSlider;
+    public AudioSource jumpAudio;
 
     [Header("Key Codes")]
     public KeyCode jumpKey = KeyCode.Space;
@@ -49,6 +50,7 @@ public class PlayerMovement : MonoBehaviour
         jumpSlider.maxValue = chargeTime;
         jumpSlider.value = chargeTime;
         jumpSlider.gameObject.SetActive(false);
+        jumpAudio = GetComponent<AudioSource>();
     }
 
     private void Update()
@@ -73,6 +75,7 @@ public class PlayerMovement : MonoBehaviour
             isChargingJump = true;
             jumpVFX = Instantiate(jumpVFXPrefab, gameObject.transform);
             jumpSlider.gameObject.SetActive(true);
+            jumpAudio.Play();
         }
 
         if (Input.GetKeyUp(jumpKey) && isGrounded)
@@ -138,6 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void ResetJump()
     {
+        jumpAudio.Stop();
         isChargingJump = false;
         jumpForce = defaultJumpForce;
         chargeTime = defaultChargeTime;

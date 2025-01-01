@@ -14,6 +14,7 @@ public class Truck : MonoBehaviour
     public WaveManager waveManager;
     public GameObject explosionPrefab;
     public GameObject explosionPoints;
+    public AudioClip explosionSound;
 
     void Start()
     {
@@ -64,6 +65,8 @@ public class Truck : MonoBehaviour
 
     private void SpawnExplosions()
     {
+        GetComponent<AudioSource>().Stop();
+        AudioSource.PlayClipAtPoint(explosionSound, transform.position, 1f);
         foreach (Transform t in explosionPoints.transform)
         {
             Instantiate(explosionPrefab, t);

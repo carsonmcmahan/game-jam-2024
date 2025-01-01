@@ -12,6 +12,8 @@ public class WaveManager : MonoBehaviour
     public List<GameObject> trucks = new List<GameObject>();
     public List<bool> delivered = new List<bool>();
 
+    public AudioClip deliverySound;
+
     public bool nextWaveCanSpawn;
 
     private void Start()
@@ -69,6 +71,7 @@ public class WaveManager : MonoBehaviour
             deliveryPoint.GetComponent<SphereCollider>().enabled = true;
             dPScript.waveManager = this;
             dPScript.deliveryPointIndex = i;
+            dPScript.deliverySound = deliverySound;
             delivered.Add(false);
 
             // Spawn the enemy at the spawn point

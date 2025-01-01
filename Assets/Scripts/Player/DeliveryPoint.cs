@@ -2,12 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 
 public class DeliveryPoint : MonoBehaviour
 {
     public bool truckDestroyed;
     public WaveManager waveManager;
     public int deliveryPointIndex;
+    public AudioClip deliverySound;
 
     private void OnTriggerEnter(Collider other)
     {
@@ -30,6 +32,8 @@ public class DeliveryPoint : MonoBehaviour
     {
         waveManager.delivered[deliveryPointIndex] = true; 
         gameObject.GetComponent<Collider>().enabled = false;
-        Destroy(gameObject.GetComponent<DeliveryPoint>(), .1f);
+        Destroy(gameObject.GetComponent<DeliveryPoint>(), .1f); 
+        AudioSource.PlayClipAtPoint(deliverySound, transform.position, 1f); 
+        transform.GetChild(0).gameObject.SetActive(false);
     }
 }

@@ -413,6 +413,7 @@ MonoBehaviour:
   speedBoostCount: 5
   speedBoostDuration: 20
   speedBoostSlider: {fileID: 0}
+  speedBoostAudio: {fileID: 8300000, guid: b6c0e7ed57024e44a961db6d70543dae, type: 3}
   RotationSmoothTime: 0.12
   SpeedChangeRate: 10
   LandingAudioClip: {fileID: 8300000, guid: ff697d3070687ce4583faa0561a145a2, type: 3}
@@ -460,6 +461,7 @@ MonoBehaviour:
   jumpForce: 40
   chargeJumpMulti: 2.5
   chargeTime: 3
+  jumpSlider: {fileID: 0}
   jumpKey: 32
   orientation: {fileID: 963337205445335266}
 --- !u!114 &7504205411720654323
