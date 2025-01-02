@@ -543,8 +543,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dd029ed13be237445ad79235379ce4fa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10
-  health: 5
+  speed: 7
+  health: 3
   burningShader: {fileID: 2100000, guid: 9c07576abbeeed441a8ac2add0c3432d, type: 2}
   deliveryPoint: {fileID: 0}
   waveManager: {fileID: 0}

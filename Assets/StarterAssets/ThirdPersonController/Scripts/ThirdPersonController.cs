@@ -204,7 +204,7 @@ namespace StarterAssets
 
         private void SpeedBoost()
         {
-            if (!canSpeedBoost || speedBoostCount <= 0) return;
+            if (!canSpeedBoost || speedBoostCount < 0) return;
 
             MoveSpeed = speedBoostValue;
             speedBoostDuration -= Time.deltaTime;
@@ -237,6 +237,9 @@ namespace StarterAssets
             {
                 _animator.SetBool(_animIDGrounded, Grounded);
             }
+
+
+
         }
 
         private void CameraRotation()

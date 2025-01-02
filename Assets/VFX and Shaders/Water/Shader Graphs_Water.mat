@@ -40,12 +40,12 @@ Material:
     m_Floats:
     - _Alpha: 0.5
     - _Metallic: 0.182
-    - _NormalScale: 128.18
+    - _NormalScale: 716.2
     - _NormalStrength: 156.21
     - _QueueControl: 0
     - _QueueOffset: 0
     - _RippleDissolve: 8.2
-    - _RippleSize: 470.98
+    - _RippleSize: 1307.47
     - _RippleSpeed: 1.5
     - _Smoothness: 1
     m_Colors:

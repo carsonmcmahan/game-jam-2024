@@ -2049,16 +2049,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Kamehameha Blast (1)
       objectReference: {fileID: 0}
-    - target: {fileID: 3436293213792350325, guid: b712aa3e616072243b31c51b21989d71,
-        type: 3}
-      propertyPath: m_RenderAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 4596006511511539689, guid: b712aa3e616072243b31c51b21989d71,
-        type: 3}
-      propertyPath: m_RenderAlignment
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 4763907163474530228, guid: b712aa3e616072243b31c51b21989d71,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -2108,16 +2098,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7141686962005686196, guid: b712aa3e616072243b31c51b21989d71,
-        type: 3}
-      propertyPath: m_RenderAlignment
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 8799086885772712113, guid: b712aa3e616072243b31c51b21989d71,
-        type: 3}
-      propertyPath: m_RenderAlignment
-      value: 2
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
