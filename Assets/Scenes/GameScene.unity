@@ -8769,7 +8769,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 32a258e0c8a369d42bc3443798a9de12, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSound: {fileID: 8300000, guid: eea126d618104ff43afa11ac01634c86, type: 3}
+  pickupSound: {fileID: 8300000, guid: 47542a9a94755354aa333de0b86f2dc7, type: 3}
 --- !u!135 &247256877
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9044,7 +9044,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0.5}
   m_AnchorMax: {x: 0, y: 0.5}
-  m_AnchoredPosition: {x: -14.123001, y: -4.24}
+  m_AnchoredPosition: {x: -14.123001, y: -7.01}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0, y: 0.5}
 --- !u!114 &261339066
@@ -9319,7 +9319,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f47dcba9e873c854181d78a43facd56b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pickupSound: {fileID: 8300000, guid: eea126d618104ff43afa11ac01634c86, type: 3}
+  pickupSound: {fileID: 8300000, guid: 47542a9a94755354aa333de0b86f2dc7, type: 3}
 --- !u!135 &284593095
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -9585,7 +9585,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: Pickup a Delivery Here
+  m_text: Pick Up A Delivery Here
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -14929,7 +14929,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &438369045
 RectTransform:
   m_ObjectHideFlags: 0
@@ -15161,7 +15161,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458138568}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.07088901, y: -0.000000018227162, z: 0.0000000012953641, w: 0.9974842}
+  m_LocalRotation: {x: 0.07088901, y: -0.000000018227158, z: 0.0000000012953639, w: 0.9974842}
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -19929,7 +19929,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0}
   m_AnchorMax: {x: 0.5, y: 0}
-  m_AnchoredPosition: {x: 19.201, y: -1.5888004}
+  m_AnchoredPosition: {x: 19.201, y: -1.1}
   m_SizeDelta: {x: 30, y: 1}
   m_Pivot: {x: 0.5, y: 0}
 --- !u!114 &671773931
@@ -20212,7 +20212,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: e1ec76aace1ea5248877a491448ec376, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.16
+  m_Volume: 0.14
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -23889,7 +23889,7 @@ MonoBehaviour:
     type: 3}
   trucks: []
   delivered: 
-  deliverySound: {fileID: 8300000, guid: 655790d2c4238354ba615c8e0170ca6c, type: 3}
+  deliverySound: {fileID: 8300000, guid: e338b226d56f6ac4c982e72e43dcd388, type: 3}
   nextWaveCanSpawn: 0
   winScreen: {fileID: 1213524553}
   loseScreen: {fileID: 1248385524}
@@ -44623,7 +44623,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 19.201, y: -2.1898022}
+  m_AnchoredPosition: {x: 19.201, y: -0.95}
   m_SizeDelta: {x: 30, y: 1}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1620920879
@@ -49712,7 +49712,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 1}
   m_AnchorMax: {x: 0.5, y: 1}
-  m_AnchoredPosition: {x: 19.201, y: -13.1597}
+  m_AnchoredPosition: {x: 19.201, y: -11.59}
   m_SizeDelta: {x: 30, y: 1}
   m_Pivot: {x: 0.5, y: 1}
 --- !u!114 &1905073460
@@ -52691,7 +52691,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -1.54}
+  m_AnchoredPosition: {x: -0.9699993, y: -1.54}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1959081889
@@ -52844,7 +52844,7 @@ RectTransform:
   m_Father: {fileID: 273202955}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -54610,9 +54610,19 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8245736359751581434, guid: 4b79d3f8b845f3b439436ffbdd55d052,
         type: 3}
+      propertyPath: speedBoostAudio
+      value: 
+      objectReference: {fileID: 8300000, guid: ffda90672063c7b4182f4a179a608870, type: 3}
+    - target: {fileID: 8245736359751581434, guid: 4b79d3f8b845f3b439436ffbdd55d052,
+        type: 3}
       propertyPath: speedBoostSlider
       value: 
       objectReference: {fileID: 1035997991}
+    - target: {fileID: 8245736359751581434, guid: 4b79d3f8b845f3b439436ffbdd55d052,
+        type: 3}
+      propertyPath: FootstepAudioVolume
+      value: 0.51
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -54664,7 +54674,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: 520555bcd1b38a142a16fdfb6bf12c6a, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 1
+  m_Volume: 0.47
   m_Pitch: 1
   Loop: 1
   Mute: 0
