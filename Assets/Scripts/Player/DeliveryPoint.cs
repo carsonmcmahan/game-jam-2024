@@ -32,8 +32,8 @@ public class DeliveryPoint : MonoBehaviour
     {
         waveManager.delivered[deliveryPointIndex] = true; 
         gameObject.GetComponent<Collider>().enabled = false;
-        Destroy(gameObject.GetComponent<DeliveryPoint>(), .1f); 
         AudioSource.PlayClipAtPoint(deliverySound, transform.position, 1f); 
         transform.GetChild(0).gameObject.SetActive(false);
+        Destroy(gameObject.GetComponent<DeliveryPoint>(), .1f);
     }
 }
