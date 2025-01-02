@@ -28,7 +28,6 @@ public class SceneBoss : MonoBehaviour
     }
 
     public void Credits() {
-        Debug.Log("Hoe");
         creditsInfo.SetActive(!active);
         active = !active;
 
