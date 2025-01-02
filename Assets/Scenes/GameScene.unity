@@ -15086,7 +15086,6 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 458138568}
   serializedVersion: 2
-<<<<<<< HEAD
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
@@ -15100,9 +15099,6 @@ Transform:
 =======
   m_LocalRotation: {x: 0.070889026, y: 0.00000001664324, z: -0.0000000011827987, w: 0.9974842}
 >>>>>>> Stashed changes
-=======
-  m_LocalRotation: {x: 0.07088901, y: -0.000000018227157, z: 0.0000000012953638, w: 0.9974842}
->>>>>>> parent of 1e3dcb4 (arrow fixes)
   m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
