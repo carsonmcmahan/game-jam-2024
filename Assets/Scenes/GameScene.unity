@@ -15087,7 +15087,11 @@ Transform:
   m_GameObject: {fileID: 458138568}
   serializedVersion: 2
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
   m_LocalRotation: {x: 0.07088901, y: -0.000000018227162, z: 0.0000000012953641, w: 0.9974842}
+=======
+  m_LocalRotation: {x: 0.070889026, y: 0.00000001664324, z: -0.0000000011827987, w: 0.9974842}
+>>>>>>> Stashed changes
 =======
   m_LocalRotation: {x: 0.070889026, y: 0.00000001664324, z: -0.0000000011827987, w: 0.9974842}
 >>>>>>> Stashed changes
