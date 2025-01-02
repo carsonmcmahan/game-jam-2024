@@ -29,6 +29,7 @@ public class Truck : MonoBehaviour
         agent.enabled = false;
         deliveryPoint.gameObject.GetComponent<DeliveryPoint>().truckDestroyed = true;
         waveManager.trucks.Remove(gameObject);
+        deliveryPoint.transform.GetChild(0).gameObject.SetActive(true);
         Destroy(gameObject, 10f);
         AddBurningShader();
         SpawnExplosions();

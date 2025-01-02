@@ -66,7 +66,6 @@ public class WaveManager : MonoBehaviour
             Transform deliveryPoint = spawnPoint == pointA ? pointB : pointA;
 
             // add components
-            deliveryPoint.transform.GetChild(0).gameObject.SetActive(true);
             DeliveryPoint dPScript = deliveryPoint.AddComponent<DeliveryPoint>();
             deliveryPoint.GetComponent<SphereCollider>().enabled = true;
             dPScript.waveManager = this;
