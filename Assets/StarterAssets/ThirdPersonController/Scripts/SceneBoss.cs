@@ -23,6 +23,10 @@ public class SceneBoss : MonoBehaviour
         SceneManager.LoadScene("GameScene");
     }
 
+    public void MainMenu() {
+        SceneManager.LoadScene("Main Menu");
+    }
+
     public void Credits() {
         Debug.Log("Hoe");
         creditsInfo.SetActive(!active);
