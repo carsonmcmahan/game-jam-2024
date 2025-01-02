@@ -16,6 +16,10 @@ public class WaveManager : MonoBehaviour
 
     public bool nextWaveCanSpawn;
 
+    public GameObject winScreen;
+    public GameObject loseScreen;
+    public bool truckMadeDelivery;
+
     private void Start()
     {
         waveCount = 1;
@@ -28,9 +32,18 @@ public class WaveManager : MonoBehaviour
         {
             nextWaveCanSpawn = true;
         }
-        if (waveCount <= 5 && nextWaveCanSpawn)
+        if (waveCount >= 5 && nextWaveCanSpawn)
         {
             //do something to end the game
+            winScreen.SetActive(true);
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
+        }
+        if (truckMadeDelivery == true)
+        {
+            loseScreen.SetActive(true); 
+            Cursor.lockState = CursorLockMode.None;
+            Cursor.visible = true;
         }
     }
 

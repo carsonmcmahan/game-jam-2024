@@ -29,4 +29,8 @@ public class SceneBoss : MonoBehaviour
         active = !active;
 
     }
+    public void MainMenu()
+    {
+        SceneManager.LoadScene("Main Menu");
+    }
 }

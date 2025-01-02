@@ -24,6 +24,7 @@ public class DeliveryPoint : MonoBehaviour
         {
             Truck truck = other.GetComponent<Truck>();
             DeliveryMade();
+            waveManager.truckMadeDelivery = true;
             truck.Destroyed();
         }
     }
